@@ -1,3 +1,7 @@
+- [*] create 'whiteboards' dir
+- [*] create .prettierrc
+- [*] create 'vercel.json' for using router in deployment
+
 - [ ] Keys
 - [ ] Props
 - [ ] Children
@@ -30,6 +34,8 @@
   - [ ] mock callbacks
   - [ ] mock child components
   - [ ] snapshots
+  - [*] Install Mock Service Worker
+  - [*] add setupFiles config to vite.config.js
 
 - [*] propTypes
   - [*] Install
@@ -73,3 +79,8 @@
   - [ ] CSS-in-js
     - styled-components
       - [*] Install
+      - [*] babel-plugin-styled-components
+        - [*] add config to vite.config.js
+
+- Debugging
+  - [*] Add launch.json config for http://localhost:5173
