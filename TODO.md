@@ -1,77 +1,75 @@
-- [x] Keys
-- [x] Props
+- [ ] Keys
+- [ ] Props
 - [ ] Children
 
 - Hooks
 
-  - [x] useState
-  - [x] State updater functions
+  - [ ] useState
+  - [ ] State updater functions
   - [ ] useEffect
-  - [ ] useMemo
-  - [ ] useRef
-  - [ ] useCallback
-  - [x] useParams
+  - [ ] useParams
   - [ ] useSearchParams
   - [ ] useLocation
-  - [x] \*useOutletContext
+  - [ ] useOutletContext
+  - [o] createContext, useContext, ContextObject.Provider
+  - [o] useReducer, dispatch,
+  - [o] useRef
+  - [o] useCallback
+  - [o] useMemo
+  - [o] <Profiler>
+  - [o] memo
 
-- [ ] \*React Testing Library
+- React Testing Library
 
-  - [x] createMemoryRouter
-  - [x] mock async code
-  - [x] query + command in context of a React Component
-  - [x] user events
-  - [x] snapshots
-  - [~] mock callbacks
-  - [x] mock child components
+  - [*] Install
+  - [*] vitest --reporter=verbose
+  - [ ] createMemoryRouter
+  - [ ] user events
+  - [ ] mock async code
+  - [ ] query + command in context of a React Component
+  - [ ] mock callbacks
+  - [ ] mock child components
+  - [ ] snapshots
 
-  - [x] Install
+- [*] propTypes
+  - [*] Install
+- [ ] defaultProps
 
-- [x] \*propTypes
-  - [x] Install
-- [x] \*defaultProps
+- React Router
 
-- \*React Router
-
-  - [x] Install
-  - [x] Link element
-  - [x] Nested routes
-  - [x] Dynamic segments
-  - [x] Outlet element
-  - [x] Routes file
-  - [x] Catch-all route
-    - [x] errorElement
-  - [x] useRouteError
-  - [x] Context with Outlets
+  - [*] Install
+  - [ ] Link element
+  - [ ] Nested routes
+  - [ ] Dynamic segments
+  - [ ] Outlet element
+  - [ ] Routes file
+  - [ ] Catch-all route
+    - [ ] errorElement
+  - [ ] useRouteError
+  - [ ] Context with Outlets
   - [ ] Protected routes
     - [ ] Navigate component
 
-- \*Fetching data
+- Fetching data
 
-  - [x] Fetch requests in React Components
-  - [x] Catching and handling errors
-  - [x] Custom Hooks
-  - [x] Request states
-    - [x] Data
-    - [x] Loading
-    - [x] Error
-  - [x] Fix useEffect race condition
-    - [x] 'ignore' flag
-    - [x] AbortController
+  - [*] Fetch requests in React Components
+  - [*] Catching and handling errors
+  - [*] Custom Hooks
+  - [*] Request states
+    - [*] Data
+    - [*] Loading
+    - [*] Error
+  - [ ] Fix useEffect race condition
+    - [ ] 'ignore' flag
+    - [ ] AbortController
   - [ ] Performance patterns
     - [ ] Managing multiple fetch requests
-      - [x] Lifting requests up
+      - [ ] Lifting requests up
 
-- \*Styling
+- Styling
 
-  - [x] CSS Modules
-    - [x] Configure named imports
-  - [x] CSS-in-js
-    - [x] styled-components
-      - [x] Install
-  - [x] Simple black and white style / jjk image palette
-  - [ ] Chromatic Aberration
-
-- [x] img class attribute?
-- [x] useEffect fetchData repeat
-- [x] Set Product quantity to 1 if 0 is typed in
+  - CSS Modules
+    - [ ] Configure named imports
+  - [ ] CSS-in-js
+    - styled-components
+      - [*] Install
