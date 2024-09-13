@@ -38,8 +38,8 @@
   - [x] Install Mock Service Worker
   - [x] add setupFiles config to vite.config.js
 
-- [*] propTypes
-  - [*] Install
+- [x] propTypes
+  - [x] Install
 - [ ] defaultProps
 
 - React Router
