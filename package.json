@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "lint": "eslint .",
+    "eslint-fix": "npx eslint . --fix",
+    "prettier-check": "npx prettier --check .",
+    "prettier-fix": "npx prettier --write .",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
