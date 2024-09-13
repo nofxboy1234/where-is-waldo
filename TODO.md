@@ -84,4 +84,4 @@
         - [*] add config to vite.config.js
 
 - Debugging
-  - [*] Add launch.json config for http://localhost:5173
+  - [x] Add launch.json config for http://localhost:5173
