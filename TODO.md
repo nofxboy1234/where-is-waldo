@@ -26,8 +26,8 @@
 
 - React Testing Library
 
-  - [*] Install
-  - [*] vitest --reporter=verbose
+  - [x] Install
+  - [x] vitest --reporter=verbose
   - [ ] createMemoryRouter
   - [ ] user events
   - [ ] mock async code
