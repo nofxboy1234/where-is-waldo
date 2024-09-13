@@ -1,6 +1,7 @@
 - [x] create 'whiteboards' dir
 - [x] create .prettierrc
 - [x] create 'vercel.json' for using router in deployment
+- [x] install prettier
 
 - [ ] Keys
 - [ ] Props
