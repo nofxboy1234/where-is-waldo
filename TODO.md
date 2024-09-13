@@ -79,9 +79,9 @@
     - [ ] Configure named imports
   - [ ] CSS-in-js
     - styled-components
-      - [*] Install
-      - [*] babel-plugin-styled-components
-        - [*] add config to vite.config.js
+      - [x] Install
+      - [x] babel-plugin-styled-components
+        - [x] add config to vite.config.js
 
 - Debugging
   - [x] Add launch.json config for http://localhost:5173
