@@ -44,7 +44,7 @@
 
 - React Router
 
-  - [*] Install
+  - [x] Install
   - [ ] Link element
   - [ ] Nested routes
   - [ ] Dynamic segments
