@@ -2,6 +2,9 @@
 - [x] create .prettierrc
 - [x] create 'vercel.json' for using router in deployment
 - [x] install prettier
+- [x] install ruby
+- [x] install rails
+- [x] install postgresql
 
 - [ ] Keys
 - [ ] Props
