@@ -36,7 +36,7 @@
   - [ ] mock child components
   - [ ] snapshots
   - [*] Install Mock Service Worker
-  - [*] add setupFiles config to vite.config.js
+  - [x] add setupFiles config to vite.config.js
 
 - [*] propTypes
   - [*] Install
