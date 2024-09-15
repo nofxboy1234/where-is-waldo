@@ -6,10 +6,10 @@ import './App.css';
 function App() {
   const [count, setCount] = useState(0);
 
-  function showCoords(e) {
+  function logCoords(e) {
     const rect = e.target.getBoundingClientRect();
-    console.log(e.clientX - rect.left);
-    console.log(e.clientY - rect.top);
+    console.log(`x: ${e.clientX - rect.left}`);
+    console.log(`y: ${e.clientY - rect.top}`);
   }
 
   return (
@@ -24,12 +24,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
 
-      <div
-        className="card"
-        onMouseEnter={showCoords}
-        onMouseMove={showCoords}
-        onMouseLeave={showCoords}
-      >
+      <div className="card" onClick={logCoords}>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
