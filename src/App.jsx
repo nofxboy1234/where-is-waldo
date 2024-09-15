@@ -6,19 +6,25 @@ import './App.css';
 function App() {
   const [count, setCount] = useState(0);
 
-  function logCoords(e) {
-    const rect = e.target.getBoundingClientRect();
-    console.log(`x: ${e.clientX - rect.left}`);
-    console.log(`y: ${e.clientY - rect.top}`);
-  }
+  function showMenu(e) {
+    const canvas = e.target;
 
-  function drawCircle(e) {
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const ctx = e.target.getContext('2d');
+    const ctx = canvas.getContext('2d');
     ctx.fillRect(x, y, 50, 50);
+  }
+
+  function hideMenu(e) {
+    const canvas = e.target;
+
+    // const rect = canvas.getBoundingClientRect();
+    // const ctx = canvas.getContext('2d');
+    // ctx.clearRect(rect.x, rect.y, 150, 150);
+
+    canvas.width = canvas.width;
   }
 
   return (
@@ -33,9 +39,16 @@ function App() {
       </div>
       <h1>Vite + React</h1>
 
-      <canvas width={150} height={150} onClick={drawCircle}></canvas>
+      <canvas
+        width={150}
+        height={150}
+        onClick={(e) => {
+          hideMenu(e);
+          showMenu(e);
+        }}
+      ></canvas>
 
-      <div className="card" onClick={logCoords}>
+      <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
