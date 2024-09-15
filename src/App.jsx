@@ -6,6 +6,12 @@ import './App.css';
 function App() {
   const [count, setCount] = useState(0);
 
+  function showCoords(e) {
+    const rect = e.target.getBoundingClientRect();
+    console.log(e.clientX - rect.left);
+    console.log(e.clientY - rect.top);
+  }
+
   return (
     <>
       <div>
@@ -17,7 +23,13 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <div className="card">
+
+      <div
+        className="card"
+        onMouseEnter={showCoords}
+        onMouseMove={showCoords}
+        onMouseLeave={showCoords}
+      >
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
@@ -25,6 +37,7 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
+
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
