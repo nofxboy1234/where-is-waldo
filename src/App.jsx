@@ -12,6 +12,15 @@ function App() {
     console.log(`y: ${e.clientY - rect.top}`);
   }
 
+  function drawCircle(e) {
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const ctx = e.target.getContext('2d');
+    ctx.fillRect(x, y, 50, 50);
+  }
+
   return (
     <>
       <div>
@@ -23,6 +32,8 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+
+      <canvas width={150} height={150} onClick={drawCircle}></canvas>
 
       <div className="card" onClick={logCoords}>
         <button onClick={() => setCount((count) => count + 1)}>
