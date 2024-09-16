@@ -8,12 +8,13 @@ import SearchImage from './components/SearchImage';
 function App() {
   const [count, setCount] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
+  const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
 
   function togglePopupMenu(e) {
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
+    setClickedPosition({ x, y });
     setShowPopup((showPopup) => !showPopup);
   }
 
@@ -34,7 +35,9 @@ function App() {
           togglePopupMenu(e);
         }}
       >
-        {showPopup ? <PopupMenu /> : null}
+        {showPopup ? (
+          <PopupMenu x={clickedPosition.x} y={clickedPosition.y} />
+        ) : null}
       </SearchImage>
 
       <div className="card">
