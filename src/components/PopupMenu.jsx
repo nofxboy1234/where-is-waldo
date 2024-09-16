@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const PopupMenu = ({ className }) => {
+const PopupMenu = ({ className, clickedPosition }) => {
   const checkWithBackend = (e) => {
     console.log('check with backend');
     console.log({
       character: e.target.textContent,
+      clickedPosition,
     });
   };
 
@@ -33,8 +34,8 @@ const CharacterDiv = styled.div`
 
 const StyledPopupMenu = styled(PopupMenu)`
   position: absolute;
-  top: ${(props) => props.$clickedPosition.y + 'px'};
-  left: ${(props) => props.$clickedPosition.x + 'px'};
+  top: ${(props) => props.clickedPosition.y + 'px'};
+  left: ${(props) => props.clickedPosition.x + 'px'};
 `;
 
 PopupMenu.propTypes = {

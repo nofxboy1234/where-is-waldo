@@ -19,7 +19,7 @@ const SearchImage = ({ className }) => {
 
   return (
     <div className={className} onClick={togglePopupMenu}>
-      {showPopup && <PopupMenu $clickedPosition={clickedPosition} />}
+      {showPopup && <PopupMenu clickedPosition={clickedPosition} />}
       {showPopup && <Target $clickedPosition={clickedPosition} radius={5} />}
     </div>
   );
