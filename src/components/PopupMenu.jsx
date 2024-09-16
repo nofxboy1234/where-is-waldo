@@ -21,6 +21,8 @@ const PopupMenu = ({ className }) => {
 const CharacterDiv = styled.div`
   background-color: white;
   color: black;
+  padding: 0.5rem 1rem;
+  width: 115.5px;
 
   &:hover {
     background-color: black;
@@ -30,9 +32,6 @@ const CharacterDiv = styled.div`
 `;
 
 const StyledPopupMenu = styled(PopupMenu)`
-  width: 150px;
-  height: 150px;
-  background-color: #2c2c2c;
   position: absolute;
   top: ${(props) => props.$clickedPosition.y + 'px'};
   left: ${(props) => props.$clickedPosition.x + 'px'};
