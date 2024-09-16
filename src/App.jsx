@@ -13,13 +13,13 @@ function App() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const popupMenu = <PopupMenu />;
-
     console.log(x);
     console.log(y);
   }
 
   function hideMenu(e) {}
+
+  const showPopup = true;
 
   return (
     <>
@@ -38,7 +38,9 @@ function App() {
           // hideMenu(e);
           showMenu(e);
         }}
-      />
+      >
+        {showPopup && <PopupMenu />}
+      </SearchImage>
 
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
