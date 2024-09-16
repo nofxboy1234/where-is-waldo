@@ -7,19 +7,17 @@ import SearchImage from './components/SearchImage';
 
 function App() {
   const [count, setCount] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
 
   function showMenu(e) {
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    console.log(x);
-    console.log(y);
+    setShowPopup((showPopup) => !showPopup);
   }
 
   function hideMenu(e) {}
-
-  const showPopup = false;
 
   return (
     <>
