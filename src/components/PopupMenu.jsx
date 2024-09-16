@@ -2,14 +2,32 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const PopupMenu = ({ className }) => {
+  const checkWithBackend = (e) => {
+    console.log('check with backend');
+    console.log({
+      character: e.target.textContent,
+    });
+  };
+
   return (
     <div className={className}>
-      <div>Character 1</div>
-      <div>Character 2</div>
-      <div>Character 3</div>
+      <CharacterDiv onClick={checkWithBackend}>Character 1</CharacterDiv>
+      <CharacterDiv onClick={checkWithBackend}>Character 2</CharacterDiv>
+      <CharacterDiv onClick={checkWithBackend}>Character 3</CharacterDiv>
     </div>
   );
 };
+
+const CharacterDiv = styled.div`
+  background-color: white;
+  color: black;
+
+  &:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+`;
 
 const StyledPopupMenu = styled(PopupMenu)`
   width: 150px;
