@@ -16,8 +16,8 @@ const StyledPopupMenu = styled(PopupMenu)`
   height: 150px;
   background-color: #2c2c2c;
   position: absolute;
-  top: ${(props) => props.$y + 'px'};
-  left: ${(props) => props.$x + 'px'};
+  top: ${(props) => props.$clickedPosition.y + 'px'};
+  left: ${(props) => props.$clickedPosition.x + 'px'};
 `;
 
 PopupMenu.propTypes = {
