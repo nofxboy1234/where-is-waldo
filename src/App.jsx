@@ -9,15 +9,13 @@ function App() {
   const [count, setCount] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
 
-  function showMenu(e) {
+  function togglePopupMenu(e) {
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
     setShowPopup((showPopup) => !showPopup);
   }
-
-  function hideMenu(e) {}
 
   return (
     <>
@@ -33,8 +31,7 @@ function App() {
 
       <SearchImage
         onClick={(e) => {
-          // hideMenu(e);
-          showMenu(e);
+          togglePopupMenu(e);
         }}
       >
         {showPopup ? <PopupMenu /> : null}
