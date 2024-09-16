@@ -29,7 +29,9 @@ const Target = ({ className, radius }) => {
   );
 };
 
-const StyledTarget = styled(Target)`
+const StyledTarget = styled(Target).attrs((props) => ({
+  radius: props.radius || 10,
+}))`
   position: absolute;
   top: ${(props) => props.$clickedPosition.y - props.radius + 'px'};
   left: ${(props) => props.$clickedPosition.x - props.radius + 'px'};
