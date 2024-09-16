@@ -36,7 +36,7 @@ function App() {
         }}
       >
         {showPopup ? (
-          <PopupMenu x={clickedPosition.x} y={clickedPosition.y} />
+          <PopupMenu $x={clickedPosition.x} $y={clickedPosition.y} />
         ) : null}
       </SearchImage>
 

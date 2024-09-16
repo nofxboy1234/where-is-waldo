@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const PopupMenu = ({ className, x, y }) => {
+const PopupMenu = ({ className }) => {
   return (
     <div className={className}>
       <div>Character 1</div>
@@ -16,8 +16,8 @@ const StyledPopupMenu = styled(PopupMenu)`
   height: 150px;
   background-color: #2c2c2c;
   position: absolute;
-  top: ${(props) => props.y + 'px'};
-  left: ${(props) => props.x + 'px'};
+  top: ${(props) => props.$y + 'px'};
+  left: ${(props) => props.$x + 'px'};
 `;
 
 PopupMenu.propTypes = {
