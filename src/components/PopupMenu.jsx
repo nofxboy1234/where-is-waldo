@@ -42,6 +42,7 @@ PopupMenu.propTypes = {
   className: PropTypes.string,
   x: PropTypes.number,
   y: PropTypes.number,
+  clickedPosition: PropTypes.object,
 };
 
 export default StyledPopupMenu;
