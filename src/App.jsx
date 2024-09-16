@@ -3,30 +3,23 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 import PopupMenu from './components/PopupMenu';
+import SearchImage from './components/SearchImage';
 
 function App() {
   const [count, setCount] = useState(0);
 
   function showMenu(e) {
-    const canvas = e.target;
-
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const ctx = canvas.getContext('2d');
-    ctx.fillRect(x, y, 50, 50);
+    const popupMenu = <PopupMenu />;
+
+    console.log(x);
+    console.log(y);
   }
 
-  function hideMenu(e) {
-    const canvas = e.target;
-
-    // const rect = canvas.getBoundingClientRect();
-    // const ctx = canvas.getContext('2d');
-    // ctx.clearRect(rect.x, rect.y, 150, 150);
-
-    canvas.width = canvas.width;
-  }
+  function hideMenu(e) {}
 
   return (
     <>
@@ -40,16 +33,12 @@ function App() {
       </div>
       <h1>Vite + React</h1>
 
-      <PopupMenu />
-
-      <canvas
-        width={150}
-        height={150}
+      <SearchImage
         onClick={(e) => {
-          hideMenu(e);
+          // hideMenu(e);
           showMenu(e);
         }}
-      ></canvas>
+      />
 
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
