@@ -14,6 +14,7 @@ const PopupMenu = ({ className }) => {
 const StyledPopupMenu = styled(PopupMenu)`
   width: 150px;
   height: 150px;
+  background-color: #2c2c2c;
 `;
 
 PopupMenu.propTypes = {
