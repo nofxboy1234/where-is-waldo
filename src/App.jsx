@@ -2,21 +2,10 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import PopupMenu from './components/PopupMenu';
 import SearchImage from './components/SearchImage';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [showPopup, setShowPopup] = useState(false);
-  const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
-
-  function togglePopupMenu(e) {
-    const rect = e.target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setClickedPosition({ x, y });
-    setShowPopup((showPopup) => !showPopup);
-  }
 
   return (
     <>
@@ -30,15 +19,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
 
-      <SearchImage
-        onClick={(e) => {
-          togglePopupMenu(e);
-        }}
-      >
-        {showPopup ? (
-          <PopupMenu $x={clickedPosition.x} $y={clickedPosition.y} />
-        ) : null}
-      </SearchImage>
+      <SearchImage />
 
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
