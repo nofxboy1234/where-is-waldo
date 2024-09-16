@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 const Target = ({ className, radius }) => {
   const canvasRef = useRef(null);
 
-  useEffect(() => {
+  const renderCircle = useCallback(() => {
     const rect = canvasRef.current.getBoundingClientRect();
     const x = rect.width / 2;
     const y = rect.height / 2;
@@ -15,6 +15,10 @@ const Target = ({ className, radius }) => {
     ctx.fillStyle = '#5eff00';
     ctx.fill();
   }, [radius]);
+
+  useEffect(() => {
+    renderCircle();
+  }, [renderCircle]);
 
   return (
     <canvas
