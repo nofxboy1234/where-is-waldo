@@ -19,7 +19,7 @@ function App() {
 
   function hideMenu(e) {}
 
-  const showPopup = true;
+  const showPopup = false;
 
   return (
     <>
@@ -39,7 +39,7 @@ function App() {
           showMenu(e);
         }}
       >
-        {showPopup && <PopupMenu />}
+        {showPopup ? <PopupMenu /> : null}
       </SearchImage>
 
       <div className="card">

@@ -19,6 +19,7 @@ const StyledSearchImage = styled(SearchImage)`
 SearchImage.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
+  children: PropTypes.object,
 };
 
 export default StyledSearchImage;
