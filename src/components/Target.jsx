@@ -6,9 +6,8 @@ const Target = ({ className, radius }) => {
   const canvasRef = useRef(null);
 
   const renderCircle = useCallback(() => {
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = rect.width / 2;
-    const y = rect.height / 2;
+    const x = radius;
+    const y = radius;
 
     const ctx = canvasRef.current.getContext('2d');
     ctx.arc(x, y, radius, 0, 2 * Math.PI);
