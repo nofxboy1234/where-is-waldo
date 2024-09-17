@@ -3,11 +3,24 @@ import PropTypes from 'prop-types';
 
 const PopupMenu = ({ className, clickedPosition }) => {
   const checkWithBackend = (e) => {
-    console.log('check with backend');
-    console.log({
-      character: e.target.textContent,
-      clickedPosition,
-    });
+    fetch('http://localhost:3000/characters/1', {
+      method: 'GET',
+      mode: 'cors',
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('server error');
+        }
+        return response.json();
+      })
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+
+    // console.log('check with backend');
+    // console.log({
+    //   character: e.target.textContent,
+    //   clickedPosition,
+    // });
   };
 
   return (
