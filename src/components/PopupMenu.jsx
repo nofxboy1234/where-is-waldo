@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 const PopupMenu = ({ className, clickedPosition }) => {
   const checkWithBackend = (e) => {
-    fetch('http://localhost:3000/characters/1', {
+    const name = e.target.textContent;
+    const id = name.charAt(name.length - 1);
+
+    fetch(`http://localhost:3000/characters/${id}`, {
       method: 'GET',
       mode: 'cors',
     })
@@ -25,9 +28,9 @@ const PopupMenu = ({ className, clickedPosition }) => {
 
   return (
     <div className={className}>
-      <CharacterDiv onClick={checkWithBackend}>Character 1</CharacterDiv>
-      <CharacterDiv onClick={checkWithBackend}>Character 2</CharacterDiv>
-      <CharacterDiv onClick={checkWithBackend}>Character 3</CharacterDiv>
+      <CharacterDiv onClick={checkWithBackend}>Character1</CharacterDiv>
+      <CharacterDiv onClick={checkWithBackend}>Character2</CharacterDiv>
+      <CharacterDiv onClick={checkWithBackend}>Character3</CharacterDiv>
     </div>
   );
 };
