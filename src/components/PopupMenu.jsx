@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import Target from './Target';
 
-const PopupMenu = ({ className, clickedPosition }) => {
-  const [showTarget, setShowTarget] = useState(true);
-
+const PopupMenu = ({ className, clickedPosition, addTarget }) => {
   const isCharacterFound = (data) => {
     if (
       clickedPosition.x >= data.position.x &&
@@ -35,10 +31,9 @@ const PopupMenu = ({ className, clickedPosition }) => {
       .then((data) => {
         if (isCharacterFound(data)) {
           console.log(`Found ${data.name}!`);
-          setShowTarget(true);
+          addTarget({ name: data.name, position: clickedPosition });
         } else {
           console.log(`${data.name} is not there!`);
-          setShowTarget(false);
         }
       })
       .catch((error) => console.error(error));
@@ -49,15 +44,9 @@ const PopupMenu = ({ className, clickedPosition }) => {
       <CharacterDiv onClick={checkWithBackend}>Character1</CharacterDiv>
       <CharacterDiv onClick={checkWithBackend}>Character2</CharacterDiv>
       <CharacterDiv onClick={checkWithBackend}>Character3</CharacterDiv>
-      <TargetContainer>{showTarget && <Target radius={5} />}</TargetContainer>
     </div>
   );
 };
-
-const TargetContainer = styled.div`
-  position: absolute;
-  top: 0px;
-`;
 
 const CharacterDiv = styled.div`
   background-color: white;
@@ -83,6 +72,7 @@ PopupMenu.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   clickedPosition: PropTypes.object,
+  addTarget: PropTypes.func,
 };
 
 export default StyledPopupMenu;
