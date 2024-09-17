@@ -2,6 +2,18 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const PopupMenu = ({ className, clickedPosition }) => {
+  const isCharacterFound = (data) => {
+    if (
+      clickedPosition.x >= data.position.x &&
+      clickedPosition.x <= data.position.x + data.position.width &&
+      clickedPosition.y >= data.position.y &&
+      clickedPosition.y <= data.position.y + data.position.height
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   const checkWithBackend = (e) => {
     const name = e.target.textContent;
     const id = name.charAt(name.length - 1);
@@ -16,14 +28,14 @@ const PopupMenu = ({ className, clickedPosition }) => {
         }
         return response.json();
       })
-      .then((data) => console.log(data))
+      .then((data) => {
+        if (isCharacterFound(data)) {
+          console.log(`Found ${data.name}!`);
+        } else {
+          console.log(`${data.name} is not there!`);
+        }
+      })
       .catch((error) => console.error(error));
-
-    // console.log('check with backend');
-    // console.log({
-    //   character: e.target.textContent,
-    //   clickedPosition,
-    // });
   };
 
   return (
