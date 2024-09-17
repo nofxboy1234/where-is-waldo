@@ -49,12 +49,15 @@ const PopupMenu = ({ className, clickedPosition }) => {
       <CharacterDiv onClick={checkWithBackend}>Character1</CharacterDiv>
       <CharacterDiv onClick={checkWithBackend}>Character2</CharacterDiv>
       <CharacterDiv onClick={checkWithBackend}>Character3</CharacterDiv>
-      <div style={{ position: 'absolute', top: '0px' }}>
-        {showTarget && <Target radius={5} />}
-      </div>
+      <TargetContainer>{showTarget && <Target radius={5} />}</TargetContainer>
     </div>
   );
 };
+
+const TargetContainer = styled.div`
+  position: absolute;
+  top: 0px;
+`;
 
 const CharacterDiv = styled.div`
   background-color: white;
