@@ -33,8 +33,8 @@ const StyledTarget = styled(Target).attrs((props) => ({
   radius: props.radius || 10,
 }))`
   position: absolute;
-  top: ${(props) => props.$clickedPosition.y - props.radius + 'px'};
-  left: ${(props) => props.$clickedPosition.x - props.radius + 'px'};
+  top: ${(props) => 0 - props.radius + 'px'};
+  left: ${(props) => 0 - props.radius + 'px'};
 `;
 
 Target.propTypes = {

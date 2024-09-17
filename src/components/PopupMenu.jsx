@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import Target from './Target';
 
 const PopupMenu = ({ className, clickedPosition }) => {
+  const [showTarget, setShowTarget] = useState(true);
+
   const isCharacterFound = (data) => {
     if (
       clickedPosition.x >= data.position.x &&
@@ -31,8 +35,10 @@ const PopupMenu = ({ className, clickedPosition }) => {
       .then((data) => {
         if (isCharacterFound(data)) {
           console.log(`Found ${data.name}!`);
+          setShowTarget(true);
         } else {
           console.log(`${data.name} is not there!`);
+          setShowTarget(false);
         }
       })
       .catch((error) => console.error(error));
@@ -43,6 +49,9 @@ const PopupMenu = ({ className, clickedPosition }) => {
       <CharacterDiv onClick={checkWithBackend}>Character1</CharacterDiv>
       <CharacterDiv onClick={checkWithBackend}>Character2</CharacterDiv>
       <CharacterDiv onClick={checkWithBackend}>Character3</CharacterDiv>
+      <div style={{ position: 'absolute', top: '0px' }}>
+        {showTarget && <Target radius={5} />}
+      </div>
     </div>
   );
 };

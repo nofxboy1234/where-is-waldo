@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PopupMenu from './PopupMenu';
-import Target from './Target';
 
 const SearchImage = ({ className }) => {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
@@ -20,7 +19,6 @@ const SearchImage = ({ className }) => {
   return (
     <div className={className} onClick={togglePopupMenu}>
       {showPopup && <PopupMenu clickedPosition={clickedPosition} />}
-      {showPopup && <Target $clickedPosition={clickedPosition} radius={5} />}
     </div>
   );
 };
