@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PopupMenu from './PopupMenu';
@@ -8,6 +8,8 @@ const SearchImage = ({ className }) => {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
   const [showPopup, setShowPopup] = useState(false);
   const [characters, setCharacters] = useState([]);
+
+  const ignoreEffectRef = useRef(false);
 
   function updateCharacterTarget(target) {
     const updatedCharacters = characters.map((character) => {
@@ -30,7 +32,9 @@ const SearchImage = ({ className }) => {
   }
 
   useEffect(() => {
-    let ignore = false;
+    if (ignoreEffectRef.current === true) {
+      return;
+    }
 
     console.log('fetching characters');
     fetch(`http://localhost:3000/characters`, {
@@ -44,22 +48,20 @@ const SearchImage = ({ className }) => {
         return response.json();
       })
       .then((data) => {
-        if (!ignore) {
-          console.log('setting characters');
-          const initialCharacters = data.map((character) => {
-            return {
-              id: character.id,
-              name: character.name,
-              position: null,
-            };
-          });
-          setCharacters(initialCharacters);
-        }
+        console.log('setting characters');
+        const initialCharacters = data.map((character) => {
+          return {
+            id: character.id,
+            name: character.name,
+            position: null,
+          };
+        });
+        setCharacters(initialCharacters);
       })
       .catch((error) => console.error(error));
 
     return () => {
-      ignore = true;
+      ignoreEffectRef.current = true;
     };
   }, []);
 
