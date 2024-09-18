@@ -30,6 +30,9 @@ const SearchImage = ({ className }) => {
   }
 
   useEffect(() => {
+    let ignore = false;
+
+    console.log('fetching characters');
     fetch(`http://localhost:3000/characters`, {
       method: 'GET',
       mode: 'cors',
@@ -41,16 +44,23 @@ const SearchImage = ({ className }) => {
         return response.json();
       })
       .then((data) => {
-        const initialCharacters = data.map((character) => {
-          return {
-            id: character.id,
-            name: character.name,
-            position: null,
-          };
-        });
-        setCharacters(initialCharacters);
+        if (!ignore) {
+          console.log('setting characters');
+          const initialCharacters = data.map((character) => {
+            return {
+              id: character.id,
+              name: character.name,
+              position: null,
+            };
+          });
+          setCharacters(initialCharacters);
+        }
       })
       .catch((error) => console.error(error));
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return (
