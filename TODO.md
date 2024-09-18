@@ -22,6 +22,7 @@
   - [o] createContext, useContext, ContextObject.Provider
   - [o] useReducer, dispatch,
   - [o] useRef
+  - [ ] forwardRef
   - [o] useCallback
   - [o] useMemo
   - [o] <Profiler>
