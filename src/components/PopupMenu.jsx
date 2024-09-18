@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const PopupMenu = ({ className, clickedPosition, addTarget }) => {
+const PopupMenu = ({
+  className,
+  clickedPosition,
+  updateCharacterTarget,
+  characters,
+}) => {
   const isCharacterFound = (data) => {
     if (
       clickedPosition.x >= data.position.x &&
@@ -15,8 +20,7 @@ const PopupMenu = ({ className, clickedPosition, addTarget }) => {
   };
 
   const checkWithBackend = (e) => {
-    const name = e.target.textContent;
-    const id = name.charAt(name.length - 1);
+    const id = e.target.dataset.id;
 
     fetch(`http://localhost:3000/characters/${id}`, {
       method: 'GET',
@@ -31,7 +35,11 @@ const PopupMenu = ({ className, clickedPosition, addTarget }) => {
       .then((data) => {
         if (isCharacterFound(data)) {
           console.log(`Found ${data.name}!`);
-          addTarget({ name: data.name, position: clickedPosition });
+          updateCharacterTarget({
+            id: Number(id),
+            name: data.name,
+            position: clickedPosition,
+          });
         } else {
           console.log(`${data.name} is not there!`);
         }
@@ -41,9 +49,16 @@ const PopupMenu = ({ className, clickedPosition, addTarget }) => {
 
   return (
     <div className={className}>
-      <CharacterDiv onClick={checkWithBackend}>Character1</CharacterDiv>
-      <CharacterDiv onClick={checkWithBackend}>Character2</CharacterDiv>
-      <CharacterDiv onClick={checkWithBackend}>Character3</CharacterDiv>
+      {characters.map((character) => (
+        <CharacterDiv
+          key={character.id}
+          id={`character-${character.id}`}
+          data-id={character.id}
+          onClick={checkWithBackend}
+        >
+          {character.name}
+        </CharacterDiv>
+      ))}
     </div>
   );
 };
@@ -72,7 +87,8 @@ PopupMenu.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   clickedPosition: PropTypes.object,
-  addTarget: PropTypes.func,
+  updateCharacterTarget: PropTypes.func,
+  characters: PropTypes.array,
 };
 
 export default StyledPopupMenu;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PopupMenu from './PopupMenu';
@@ -7,11 +7,17 @@ import Target from './Target';
 const SearchImage = ({ className }) => {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
   const [showPopup, setShowPopup] = useState(false);
-  const [targets, setTargets] = useState([]);
+  const [characters, setCharacters] = useState([]);
 
-  function addTarget(target) {
-    const updatedTargets = [...targets, target];
-    setTargets(updatedTargets);
+  function updateCharacterTarget(target) {
+    const updatedCharacters = characters.map((character) => {
+      if (character.id === target.id) {
+        return target;
+      } else {
+        return character;
+      }
+    });
+    setCharacters(updatedCharacters);
   }
 
   function togglePopupMenu(e) {
@@ -23,15 +29,51 @@ const SearchImage = ({ className }) => {
     setShowPopup((showPopup) => !showPopup);
   }
 
+  useEffect(() => {
+    fetch(`http://localhost:3000/characters`, {
+      method: 'GET',
+      mode: 'cors',
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('server error');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const initialCharacters = data.map((character) => {
+          return {
+            id: character.id,
+            name: character.name,
+            position: null,
+          };
+        });
+        setCharacters(initialCharacters);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <div className={className} onClick={togglePopupMenu}>
       {showPopup && (
-        <PopupMenu clickedPosition={clickedPosition} addTarget={addTarget} />
+        <PopupMenu
+          clickedPosition={clickedPosition}
+          updateCharacterTarget={updateCharacterTarget}
+          characters={characters.filter(
+            (character) => character.position === null,
+          )}
+        />
       )}
-      {targets.map((target) => {
-        return (
-          <Target key={target.name} radius={5} $position={target.position} />
-        );
+      {characters.map((character) => {
+        if (character.position) {
+          return (
+            <Target
+              key={character.id}
+              radius={5}
+              $position={character.position}
+            />
+          );
+        }
       })}
     </div>
   );
