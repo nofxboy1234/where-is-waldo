@@ -22,10 +22,13 @@ const PopupMenu = ({
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
 
-    fetch(`http://localhost:3000/characters/${id}`, {
-      method: 'GET',
-      mode: 'cors',
-    })
+    fetch(
+      `http://localhost:3000/characters/${id}/find?x=${clickedPosition.x}&y=${clickedPosition.y}`,
+      {
+        method: 'GET',
+        mode: 'cors',
+      },
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error('server error');
