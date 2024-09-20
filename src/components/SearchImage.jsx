@@ -8,8 +8,10 @@ const SearchImage = ({ className }) => {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
   const [showPopup, setShowPopup] = useState(false);
   const [characters, setCharacters] = useState([]);
+  const [token, setToken] = useState(null);
 
-  const ignoreEffectRef = useRef(false);
+  const ignoreFetchCharactersEffectRef = useRef(false);
+  const ignoreLoginEffectRef = useRef(false);
 
   function updateCharacterTarget(target) {
     const updatedCharacters = characters.map((character) => {
@@ -32,7 +34,7 @@ const SearchImage = ({ className }) => {
   }
 
   useEffect(() => {
-    if (ignoreEffectRef.current === true) {
+    if (ignoreFetchCharactersEffectRef.current === true) {
       return;
     }
 
@@ -61,7 +63,34 @@ const SearchImage = ({ className }) => {
       .catch((error) => console.error(error));
 
     return () => {
-      ignoreEffectRef.current = true;
+      ignoreFetchCharactersEffectRef.current = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (ignoreLoginEffectRef.current === true) {
+      return;
+    }
+
+    console.log('logging in as anonymous user');
+    fetch(`http://localhost:3000/users/login_anonymous`, {
+      method: 'GET',
+      mode: 'cors',
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('server error');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('setting jwt token');
+        setToken(data.token);
+      })
+      .catch((error) => console.error(error));
+
+    return () => {
+      ignoreLoginEffectRef.current = true;
     };
   }, []);
 
@@ -74,6 +103,7 @@ const SearchImage = ({ className }) => {
           characters={characters.filter(
             (character) => character.position === null,
           )}
+          token={token}
         />
       )}
       {characters.map((character) => {

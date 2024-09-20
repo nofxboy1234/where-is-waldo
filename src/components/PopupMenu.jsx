@@ -6,6 +6,7 @@ const PopupMenu = ({
   clickedPosition,
   updateCharacterTarget,
   characters,
+  token,
 }) => {
   const isCharacterFound = (data) => {
     if (
@@ -27,6 +28,9 @@ const PopupMenu = ({
       {
         method: 'GET',
         mode: 'cors',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
     )
       .then((response) => {
@@ -92,6 +96,7 @@ PopupMenu.propTypes = {
   clickedPosition: PropTypes.object,
   updateCharacterTarget: PropTypes.func,
   characters: PropTypes.array,
+  token: PropTypes.string,
 };
 
 export default StyledPopupMenu;
