@@ -8,18 +8,6 @@ const PopupMenu = ({
   characters,
   token,
 }) => {
-  const isCharacterFound = (data) => {
-    if (
-      clickedPosition.x >= data.position.x &&
-      clickedPosition.x <= data.position.x + data.position.width &&
-      clickedPosition.y >= data.position.y &&
-      clickedPosition.y <= data.position.y + data.position.height
-    ) {
-      return true;
-    }
-    return false;
-  };
-
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
 
@@ -40,7 +28,7 @@ const PopupMenu = ({
         return response.json();
       })
       .then((data) => {
-        if (isCharacterFound(data)) {
+        if (data.found) {
           console.log(`Found ${data.name}!`);
           updateCharacterTarget({
             id: Number(id),
