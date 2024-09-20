@@ -7,6 +7,7 @@ const PopupMenu = ({
   updateCharacterTarget,
   characters,
   token,
+  setToken,
 }) => {
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
@@ -30,11 +31,15 @@ const PopupMenu = ({
       .then((data) => {
         if (data.found) {
           console.log(`Found ${data.name}!`);
+          setToken(data.token);
           updateCharacterTarget({
             id: Number(id),
             name: data.name,
             position: clickedPosition,
           });
+          if (data.all_found) {
+            console.log('You found all the characters!');
+          }
         } else {
           console.log(`${data.name} is not there!`);
         }
@@ -85,6 +90,7 @@ PopupMenu.propTypes = {
   updateCharacterTarget: PropTypes.func,
   characters: PropTypes.array,
   token: PropTypes.string,
+  setToken: PropTypes.func,
 };
 
 export default StyledPopupMenu;

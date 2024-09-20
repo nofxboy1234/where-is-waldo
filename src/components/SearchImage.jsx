@@ -104,6 +104,7 @@ const SearchImage = ({ className }) => {
             (character) => character.position === null,
           )}
           token={token}
+          setToken={setToken}
         />
       )}
       {characters.map((character) => {
