@@ -39,6 +39,7 @@ const PopupMenu = ({
           });
           if (data.all_found) {
             console.log('You found all the characters!');
+            console.log(`Your score is ${data.score}s`);
           }
         } else {
           console.log(`${data.name} is not there!`);
