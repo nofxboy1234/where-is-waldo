@@ -8,6 +8,8 @@ const PopupMenu = ({
   characters,
   token,
   setToken,
+  login_anonymously,
+  initializeCharacters,
 }) => {
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
@@ -40,6 +42,8 @@ const PopupMenu = ({
           if (data.all_found) {
             console.log('You found all the characters!');
             console.log(`Your score is ${data.score}s`);
+            login_anonymously();
+            initializeCharacters();
           }
         } else {
           console.log(`${data.name} is not there!`);
@@ -92,6 +96,8 @@ PopupMenu.propTypes = {
   characters: PropTypes.array,
   token: PropTypes.string,
   setToken: PropTypes.func,
+  login_anonymously: PropTypes.func,
+  initializeCharacters: PropTypes.func,
 };
 
 export default StyledPopupMenu;

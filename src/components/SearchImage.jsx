@@ -34,10 +34,6 @@ const SearchImage = ({ className }) => {
   }
 
   function initializeCharacters() {
-    if (ignoreFetchCharactersEffectRef.current === true) {
-      return;
-    }
-
     console.log('fetching characters');
     fetch(`http://localhost:3000/characters`, {
       method: 'GET',
@@ -64,10 +60,6 @@ const SearchImage = ({ className }) => {
   }
 
   function login_anonymously() {
-    if (ignoreLoginEffectRef.current === true) {
-      return;
-    }
-
     console.log('logging in as anonymous user');
     fetch(`http://localhost:3000/users/login_anonymous`, {
       method: 'GET',
@@ -87,6 +79,10 @@ const SearchImage = ({ className }) => {
   }
 
   useEffect(() => {
+    if (ignoreFetchCharactersEffectRef.current === true) {
+      return;
+    }
+
     initializeCharacters();
 
     return () => {
@@ -95,6 +91,10 @@ const SearchImage = ({ className }) => {
   }, []);
 
   useEffect(() => {
+    if (ignoreLoginEffectRef.current === true) {
+      return;
+    }
+
     login_anonymously();
 
     return () => {
@@ -113,6 +113,8 @@ const SearchImage = ({ className }) => {
           )}
           token={token}
           setToken={setToken}
+          login_anonymously={login_anonymously}
+          initializeCharacters={initializeCharacters}
         />
       )}
       {characters.map((character) => {
