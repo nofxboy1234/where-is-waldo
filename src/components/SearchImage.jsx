@@ -33,7 +33,7 @@ const SearchImage = ({ className }) => {
     setShowPopup((showPopup) => !showPopup);
   }
 
-  useEffect(() => {
+  function initializeCharacters() {
     if (ignoreFetchCharactersEffectRef.current === true) {
       return;
     }
@@ -61,13 +61,9 @@ const SearchImage = ({ className }) => {
         setCharacters(initialCharacters);
       })
       .catch((error) => console.error(error));
+  }
 
-    return () => {
-      ignoreFetchCharactersEffectRef.current = true;
-    };
-  }, []);
-
-  useEffect(() => {
+  function login_anonymously() {
     if (ignoreLoginEffectRef.current === true) {
       return;
     }
@@ -88,6 +84,18 @@ const SearchImage = ({ className }) => {
         setToken(data.token);
       })
       .catch((error) => console.error(error));
+  }
+
+  useEffect(() => {
+    initializeCharacters();
+
+    return () => {
+      ignoreFetchCharactersEffectRef.current = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    login_anonymously();
 
     return () => {
       ignoreLoginEffectRef.current = true;
