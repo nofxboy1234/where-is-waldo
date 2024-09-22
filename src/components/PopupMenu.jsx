@@ -11,6 +11,25 @@ const PopupMenu = ({
   login_anonymously,
   initializeCharacters,
 }) => {
+  // X-CSRF-Token
+  const postScore = async (name, id) => {
+    await fetch(`http://localhost:3000/scores/${id}`, {
+      method: 'PATCH',
+      mode: 'cors',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('server error');
+        }
+      })
+      .catch((error) => console.error(error));
+  };
+
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
 
@@ -30,7 +49,7 @@ const PopupMenu = ({
         }
         return response.json();
       })
-      .then((data) => {
+      .then(async (data) => {
         if (data.found) {
           console.log(`Found ${data.name}!`);
           setToken(data.token);
@@ -42,6 +61,13 @@ const PopupMenu = ({
           if (data.all_found) {
             console.log('You found all the characters!');
             console.log(`Your score is ${data.score}s`);
+
+            const name = prompt(
+              `Your score is ${data.score}! Please enter your name for the scoreboard.`,
+            );
+
+            await postScore(name, data.score_id);
+
             login_anonymously();
             initializeCharacters();
           }
