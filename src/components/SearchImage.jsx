@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PopupMenu from './PopupMenu';
 import Target from './Target';
+import waldoImage from '../assets/waldo.png';
 
 const SearchImage = ({ className }) => {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
@@ -92,38 +93,45 @@ const SearchImage = ({ className }) => {
   }, [initializeGame]);
 
   return (
-    <div className={className} onClick={togglePopupMenu}>
-      {showPopup && (
-        <PopupMenu
-          clickedPosition={clickedPosition}
-          updateCharacterTarget={updateCharacterTarget}
-          characters={characters.filter(
-            (character) => character.position === null,
-          )}
-          token={token}
-          setToken={setToken}
-          ignoreInitEffectRef={ignoreInitEffectRef}
-          initializeGame={initializeGame}
-        />
-      )}
-      {characters.map((character) => {
-        if (character.position) {
-          return (
-            <Target
-              key={character.id}
-              radius={5}
-              $position={character.position}
-            />
-          );
-        }
-      })}
-    </div>
+    <>
+      <div className={className} onClick={togglePopupMenu}>
+        <StyledImg src={waldoImage} alt="where's waldo beach image" />
+        {showPopup && (
+          <PopupMenu
+            clickedPosition={clickedPosition}
+            updateCharacterTarget={updateCharacterTarget}
+            characters={characters.filter(
+              (character) => character.position === null,
+            )}
+            token={token}
+            setToken={setToken}
+            ignoreInitEffectRef={ignoreInitEffectRef}
+            initializeGame={initializeGame}
+          />
+        )}
+        {characters.map((character) => {
+          if (character.position) {
+            return (
+              <Target
+                key={character.id}
+                radius={5}
+                $position={character.position}
+              />
+            );
+          }
+        })}
+      </div>
+    </>
   );
 };
 
+const StyledImg = styled.img`
+  position: relative;
+`;
+
 const StyledSearchImage = styled(SearchImage)`
-  width: 500px;
-  height: 500px;
+  width: 2560px;
+  height: 1600px;
   background-color: #1d1d1d;
   position: relative;
 `;
