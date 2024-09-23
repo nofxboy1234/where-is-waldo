@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PopupMenu from './PopupMenu';
@@ -10,8 +10,7 @@ const SearchImage = ({ className }) => {
   const [characters, setCharacters] = useState([]);
   const [token, setToken] = useState(null);
 
-  const ignoreFetchCharactersEffectRef = useRef(false);
-  const ignoreLoginEffectRef = useRef(false);
+  const ignoreInitEffectRef = useRef(false);
 
   function updateCharacterTarget(target) {
     const updatedCharacters = characters.map((character) => {
@@ -34,7 +33,6 @@ const SearchImage = ({ className }) => {
   }
 
   function initializeCharacters() {
-    console.log('fetching characters');
     fetch(`http://localhost:3000/characters`, {
       method: 'GET',
       mode: 'cors',
@@ -46,7 +44,6 @@ const SearchImage = ({ className }) => {
         return response.json();
       })
       .then((data) => {
-        console.log('setting characters');
         const initialCharacters = data.map((character) => {
           return {
             id: character.id,
@@ -60,7 +57,6 @@ const SearchImage = ({ className }) => {
   }
 
   function login_anonymously() {
-    console.log('logging in as anonymous user');
     fetch(`http://localhost:3000/users/login_anonymous`, {
       method: 'GET',
       mode: 'cors',
@@ -72,35 +68,28 @@ const SearchImage = ({ className }) => {
         return response.json();
       })
       .then((data) => {
-        console.log('setting jwt token');
         setToken(data.token);
       })
       .catch((error) => console.error(error));
   }
 
-  useEffect(() => {
-    if (ignoreFetchCharactersEffectRef.current === true) {
-      return;
-    }
-
+  const initializeGame = useCallback(() => {
     initializeCharacters();
-
-    return () => {
-      ignoreFetchCharactersEffectRef.current = true;
-    };
+    login_anonymously();
   }, []);
 
   useEffect(() => {
-    if (ignoreLoginEffectRef.current === true) {
+    if (ignoreInitEffectRef.current === true) {
       return;
     }
+    console.log('useEffect');
 
-    login_anonymously();
+    initializeGame();
 
     return () => {
-      ignoreLoginEffectRef.current = true;
+      ignoreInitEffectRef.current = true;
     };
-  }, []);
+  }, [initializeGame]);
 
   return (
     <div className={className} onClick={togglePopupMenu}>
@@ -113,6 +102,8 @@ const SearchImage = ({ className }) => {
           )}
           token={token}
           setToken={setToken}
+          ignoreInitEffectRef={ignoreInitEffectRef}
+          initializeGame={initializeGame}
         />
       )}
       {characters.map((character) => {

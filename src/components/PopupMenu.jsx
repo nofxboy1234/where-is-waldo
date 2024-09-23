@@ -8,6 +8,8 @@ const PopupMenu = ({
   characters,
   token,
   setToken,
+  ignoreInitEffectRef,
+  initializeGame,
 }) => {
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
@@ -30,15 +32,12 @@ const PopupMenu = ({
       })
       .then((data) => {
         if (data.found) {
-          console.log(`Found ${data.name}!`);
           setToken(data.token);
           updateCharacterTarget({
             id: Number(id),
             name: data.name,
             position: clickedPosition,
           });
-        } else {
-          console.log(`${data.name} is not there!`);
         }
 
         if (data.all_found) {
@@ -61,6 +60,8 @@ const PopupMenu = ({
                 if (!response.ok) {
                   throw new Error('server error');
                 }
+                ignoreInitEffectRef.current = false;
+                initializeGame();
               })
               .catch((error) => console.error(error));
           }, 100);
@@ -112,6 +113,8 @@ PopupMenu.propTypes = {
   token: PropTypes.string,
   setToken: PropTypes.func,
   setScore: PropTypes.func,
+  ignoreInitEffectRef: PropTypes.object,
+  initializeGame: PropTypes.func,
 };
 
 export default StyledPopupMenu;
