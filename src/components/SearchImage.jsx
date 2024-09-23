@@ -8,6 +8,8 @@ const SearchImage = ({ className }) => {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
   const [showPopup, setShowPopup] = useState(false);
   const [characters, setCharacters] = useState([]);
+  const [allCharactersFound, setAllCharactersFound] = useState(false);
+  const [score, setScore] = useState({ score_id: null, score: 0 });
   const [token, setToken] = useState(null);
 
   const ignoreFetchCharactersEffectRef = useRef(false);
@@ -88,7 +90,7 @@ const SearchImage = ({ className }) => {
     return () => {
       ignoreFetchCharactersEffectRef.current = true;
     };
-  }, []);
+  }, [allCharactersFound]);
 
   useEffect(() => {
     if (ignoreLoginEffectRef.current === true) {
@@ -100,7 +102,40 @@ const SearchImage = ({ className }) => {
     return () => {
       ignoreLoginEffectRef.current = true;
     };
-  }, []);
+  }, [allCharactersFound]);
+
+  useEffect(() => {
+    if (!allCharactersFound) {
+      return;
+    }
+
+    const postScore = async (name, id) => {
+      // X-CSRF-Token in header?
+      await fetch(`http://localhost:3000/scores/${id}`, {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('server error');
+          }
+
+          // login_anonymously();
+          // initializeCharacters();
+        })
+        .catch((error) => console.error(error));
+    };
+
+    const name = prompt(
+      `You found all the characters! Your score is ${score.score}! Please enter your name for the scoreboard.`,
+    );
+    postScore(name, score.score_id);
+  }, [score, token, allCharactersFound]);
 
   return (
     <div className={className} onClick={togglePopupMenu}>
@@ -113,8 +148,8 @@ const SearchImage = ({ className }) => {
           )}
           token={token}
           setToken={setToken}
-          login_anonymously={login_anonymously}
-          initializeCharacters={initializeCharacters}
+          setAllCharactersFound={setAllCharactersFound}
+          setScore={setScore}
         />
       )}
       {characters.map((character) => {

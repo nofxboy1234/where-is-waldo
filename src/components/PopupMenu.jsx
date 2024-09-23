@@ -8,28 +8,9 @@ const PopupMenu = ({
   characters,
   token,
   setToken,
-  login_anonymously,
-  initializeCharacters,
+  setAllCharactersFound,
+  setScore,
 }) => {
-  // X-CSRF-Token
-  const postScore = async (name, id) => {
-    await fetch(`http://localhost:3000/scores/${id}`, {
-      method: 'PATCH',
-      mode: 'cors',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('server error');
-        }
-      })
-      .catch((error) => console.error(error));
-  };
-
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
 
@@ -59,17 +40,8 @@ const PopupMenu = ({
             position: clickedPosition,
           });
           if (data.all_found) {
-            console.log('You found all the characters!');
-            console.log(`Your score is ${data.score}s`);
-
-            const name = prompt(
-              `Your score is ${data.score}! Please enter your name for the scoreboard.`,
-            );
-
-            await postScore(name, data.score_id);
-
-            login_anonymously();
-            initializeCharacters();
+            setAllCharactersFound(true);
+            setScore({ score_id: data.score_id, score: data.score });
           }
         } else {
           console.log(`${data.name} is not there!`);
@@ -122,8 +94,8 @@ PopupMenu.propTypes = {
   characters: PropTypes.array,
   token: PropTypes.string,
   setToken: PropTypes.func,
-  login_anonymously: PropTypes.func,
-  initializeCharacters: PropTypes.func,
+  setAllCharactersFound: PropTypes.func,
+  setScore: PropTypes.func,
 };
 
 export default StyledPopupMenu;
