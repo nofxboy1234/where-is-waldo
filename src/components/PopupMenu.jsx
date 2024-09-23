@@ -43,7 +43,7 @@ const PopupMenu = ({
         if (data.all_found) {
           setTimeout(() => {
             const name = prompt(
-              `You found all the characters! Your score is ${data.score}! Please enter your name for the scoreboard.`,
+              `You found all the characters! Your time was ${data.score}s! Please enter your name for the scoreboard.`,
             );
 
             // X-CSRF-Token in header?
