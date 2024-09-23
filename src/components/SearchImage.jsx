@@ -9,7 +9,6 @@ const SearchImage = ({ className }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [characters, setCharacters] = useState([]);
   const [allCharactersFound, setAllCharactersFound] = useState(false);
-  const [score, setScore] = useState({ score_id: null, score: 0 });
   const [token, setToken] = useState(null);
 
   const ignoreFetchCharactersEffectRef = useRef(false);
@@ -90,7 +89,7 @@ const SearchImage = ({ className }) => {
     return () => {
       ignoreFetchCharactersEffectRef.current = true;
     };
-  }, [allCharactersFound]);
+  }, []);
 
   useEffect(() => {
     if (ignoreLoginEffectRef.current === true) {
@@ -102,40 +101,46 @@ const SearchImage = ({ className }) => {
     return () => {
       ignoreLoginEffectRef.current = true;
     };
-  }, [allCharactersFound]);
+  }, []);
 
   useEffect(() => {
     if (!allCharactersFound) {
       return;
     }
 
-    const postScore = async (name, id) => {
-      // X-CSRF-Token in header?
-      await fetch(`http://localhost:3000/scores/${id}`, {
-        method: 'PATCH',
-        mode: 'cors',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('server error');
-          }
+    console.log('show prompt');
+    setTimeout(() => {
+      prompt(
+        `You found all the characters! Your score is ${99}! Please enter your name for the scoreboard.`,
+      );
+    });
+    // Promise.resolve().then(() => {
+    //   prompt(
+    //     `You found all the characters! Your score is ${99}! Please enter your name for the scoreboard.`,
+    //   );
+    // });
 
-          // login_anonymously();
-          // initializeCharacters();
-        })
-        .catch((error) => console.error(error));
-    };
+    return () => setAllCharactersFound(false);
+  }, [allCharactersFound]);
 
-    const name = prompt(
-      `You found all the characters! Your score is ${score.score}! Please enter your name for the scoreboard.`,
-    );
-    postScore(name, score.score_id);
-  }, [score, token, allCharactersFound]);
+  // // X-CSRF-Token in header?
+  // await fetch(`http://localhost:3000/scores/${score.score_id}`, {
+  //   method: 'PATCH',
+  //   mode: 'cors',
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ name }),
+  // })
+  //   .then((response) => {
+  //     if (!response.ok) {
+  //       throw new Error('server error');
+  //     }
+  //     setAllCharactersFound(true);
+  //   })
+  //   .catch((error) => console.error(error));
+  // }
 
   return (
     <div className={className} onClick={togglePopupMenu}>
@@ -149,7 +154,6 @@ const SearchImage = ({ className }) => {
           token={token}
           setToken={setToken}
           setAllCharactersFound={setAllCharactersFound}
-          setScore={setScore}
         />
       )}
       {characters.map((character) => {

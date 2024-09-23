@@ -9,7 +9,6 @@ const PopupMenu = ({
   token,
   setToken,
   setAllCharactersFound,
-  setScore,
 }) => {
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
@@ -30,8 +29,8 @@ const PopupMenu = ({
         }
         return response.json();
       })
-      .then(async (data) => {
-        if (data.found) {
+      .then((data) => {
+        if (data.all_found) {
           console.log(`Found ${data.name}!`);
           setToken(data.token);
           updateCharacterTarget({
@@ -39,13 +38,22 @@ const PopupMenu = ({
             name: data.name,
             position: clickedPosition,
           });
-          if (data.all_found) {
-            setAllCharactersFound(true);
-            setScore({ score_id: data.score_id, score: data.score });
-          }
+
+          setAllCharactersFound(true);
         } else {
-          console.log(`${data.name} is not there!`);
+          if (data.found) {
+            console.log(`Found ${data.name}!`);
+            setToken(data.token);
+            updateCharacterTarget({
+              id: Number(id),
+              name: data.name,
+              position: clickedPosition,
+            });
+          } else {
+            console.log(`${data.name} is not there!`);
+          }
         }
+        return data;
       })
       .catch((error) => console.error(error));
   };
@@ -87,14 +95,11 @@ const StyledPopupMenu = styled(PopupMenu)`
 
 PopupMenu.propTypes = {
   className: PropTypes.string,
-  x: PropTypes.number,
-  y: PropTypes.number,
   clickedPosition: PropTypes.object,
   updateCharacterTarget: PropTypes.func,
   characters: PropTypes.array,
   token: PropTypes.string,
   setToken: PropTypes.func,
-  setAllCharactersFound: PropTypes.func,
   setScore: PropTypes.func,
 };
 
