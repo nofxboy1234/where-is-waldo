@@ -8,7 +8,6 @@ const PopupMenu = ({
   characters,
   token,
   setToken,
-  setAllCharactersFound,
 }) => {
   const checkWithBackend = (e) => {
     const id = e.target.dataset.id;
@@ -30,7 +29,7 @@ const PopupMenu = ({
         return response.json();
       })
       .then((data) => {
-        if (data.all_found) {
+        if (data.found) {
           console.log(`Found ${data.name}!`);
           setToken(data.token);
           updateCharacterTarget({
@@ -38,22 +37,34 @@ const PopupMenu = ({
             name: data.name,
             position: clickedPosition,
           });
-
-          setAllCharactersFound(true);
         } else {
-          if (data.found) {
-            console.log(`Found ${data.name}!`);
-            setToken(data.token);
-            updateCharacterTarget({
-              id: Number(id),
-              name: data.name,
-              position: clickedPosition,
-            });
-          } else {
-            console.log(`${data.name} is not there!`);
-          }
+          console.log(`${data.name} is not there!`);
         }
-        return data;
+
+        if (data.all_found) {
+          setTimeout(() => {
+            const name = prompt(
+              `You found all the characters! Your score is ${data.score}! Please enter your name for the scoreboard.`,
+            );
+
+            // X-CSRF-Token in header?
+            fetch(`http://localhost:3000/scores/${data.score_id}`, {
+              method: 'PATCH',
+              mode: 'cors',
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ name }),
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error('server error');
+                }
+              })
+              .catch((error) => console.error(error));
+          }, 100);
+        }
       })
       .catch((error) => console.error(error));
   };
