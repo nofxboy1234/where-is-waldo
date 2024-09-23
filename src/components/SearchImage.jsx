@@ -94,6 +94,13 @@ const SearchImage = ({ className }) => {
 
   return (
     <>
+      <div>
+        Find all 3 characters by clicking their position in the image and
+        choosing their name.
+      </div>
+      <div>
+        A target icon will be placed when the correct character is identified.
+      </div>
       <div className={className} onClick={togglePopupMenu}>
         <StyledImg src={waldoImage} alt="where's waldo beach image" />
         {showPopup && (
