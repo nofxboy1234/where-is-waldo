@@ -8,7 +8,6 @@ const PopupMenu = ({
   characters,
   token,
   setToken,
-  ignoreInitEffectRef,
   initializeGame,
 }) => {
   const checkWithBackend = (e) => {
@@ -60,7 +59,6 @@ const PopupMenu = ({
                 if (!response.ok) {
                   throw new Error('server error');
                 }
-                ignoreInitEffectRef.current = false;
                 initializeGame();
               })
               .catch((error) => console.error(error));
@@ -112,8 +110,6 @@ PopupMenu.propTypes = {
   characters: PropTypes.array,
   token: PropTypes.string,
   setToken: PropTypes.func,
-  setScore: PropTypes.func,
-  ignoreInitEffectRef: PropTypes.object,
   initializeGame: PropTypes.func,
 };
 

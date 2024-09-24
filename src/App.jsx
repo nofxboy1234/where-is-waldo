@@ -4,8 +4,7 @@ import Scoreboard from './components/Scoreboard';
 function App() {
   return (
     <>
-      <Scoreboard />
-      {/* <SearchImage /> */}
+      <SearchImage />
     </>
   );
 }

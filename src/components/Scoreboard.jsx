@@ -14,7 +14,7 @@ const Scoreboard = () => {
       if (ignore) {
         return;
       }
-      console.log(`Running effect with id: ${id}`);
+      console.log(`Running Scoreboard effect with id: ${id}`);
       initializeScores();
     });
     return () => {
@@ -46,7 +46,7 @@ const Scoreboard = () => {
       .catch((error) => console.error(error));
   }
 
-  console.log('Rendering');
+  console.log('Rendering Scoreboard');
 
   return (
     <>
