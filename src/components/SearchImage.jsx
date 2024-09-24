@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import PopupMenu from './PopupMenu';
 import Target from './Target';
 import waldoImage from '../assets/waldo.png';
+import Scoreboard from './Scoreboard';
 
 const SearchImage = ({ className }) => {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
@@ -83,7 +84,6 @@ const SearchImage = ({ className }) => {
     if (ignoreInitEffectRef.current === true) {
       return;
     }
-    console.log('useEffect');
 
     initializeGame();
 
@@ -101,6 +101,7 @@ const SearchImage = ({ className }) => {
       <div>
         A target icon will be placed when the correct character is identified.
       </div>
+      <Scoreboard />
       <div className={className} onClick={togglePopupMenu}>
         <StyledImg src={waldoImage} alt="where's waldo beach image" />
         {showPopup && (
