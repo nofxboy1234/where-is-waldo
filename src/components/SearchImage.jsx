@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PopupMenu from './PopupMenu';
@@ -6,13 +6,13 @@ import Target from './Target';
 import waldoImage from '../assets/waldo.png';
 import Scoreboard from './Scoreboard';
 
+let count = 0;
+
 const SearchImage = ({ className }) => {
   const [clickedPosition, setClickedPosition] = useState({ x: 0, y: 0 });
   const [showPopup, setShowPopup] = useState(false);
   const [characters, setCharacters] = useState([]);
   const [token, setToken] = useState(null);
-
-  const ignoreInitEffectRef = useRef(false);
 
   function updateCharacterTarget(target) {
     const updatedCharacters = characters.map((character) => {
@@ -81,14 +81,17 @@ const SearchImage = ({ className }) => {
   }, []);
 
   useEffect(() => {
-    if (ignoreInitEffectRef.current === true) {
-      return;
-    }
-
-    initializeGame();
-
+    const id = ++count;
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) {
+        return;
+      }
+      console.log(`Running SearchImage effect with id: ${id}`);
+      initializeGame();
+    });
     return () => {
-      ignoreInitEffectRef.current = true;
+      ignore = true;
     };
   }, [initializeGame]);
 
@@ -113,7 +116,6 @@ const SearchImage = ({ className }) => {
             )}
             token={token}
             setToken={setToken}
-            ignoreInitEffectRef={ignoreInitEffectRef}
             initializeGame={initializeGame}
           />
         )}
