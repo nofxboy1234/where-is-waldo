@@ -1,29 +1,32 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { CharactersContext } from './SearchImage';
 
 let count = 0;
 
-const Scoreboard = ({ className, characters = [] }) => {
+const Scoreboard = ({ className }) => {
   const [scores, setScores] = useState([]);
+  const characters = useContext(CharactersContext);
 
-  // useEffect(() => {
-  //   if (!characters.every((character) => character.position === null)) {
-  //     return;
-  //   }
+  useEffect(() => {
+    if (!characters.every((character) => character.position === null)) {
+      return;
+    }
 
-  //   const id = ++count;
-  //   let ignore = false;
-  //   Promise.resolve().then(() => {
-  //     if (ignore) {
-  //       return;
-  //     }
-  //     initializeScores();
-  //   });
-  //   return () => {
-  //     ignore = true;
-  //   };
-  // }, [characters]);
+    const id = ++count;
+    let ignore = false;
+    Promise.resolve().then(() => {
+      if (ignore) {
+        return;
+      }
+      initializeScores();
+    });
+    return () => {
+      ignore = true;
+    };
+  }, [characters]);
 
   function initializeScores() {
     fetch(`http://localhost:3000/scores`, {
@@ -75,7 +78,7 @@ const StyledScoreboard = styled(Scoreboard)`
 `;
 
 Scoreboard.propTypes = {
-  characters: PropTypes.array,
+  className: PropTypes.string,
 };
 
 export default StyledScoreboard;

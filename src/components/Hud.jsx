@@ -18,12 +18,6 @@ const Hud = ({ className }) => {
   );
 };
 
-const CharacterName = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: white;
-`;
-
 const StyledHud = styled(Hud)`
   display: grid;
   grid-template: 80px 270px / 250px 115px 115px 150px;

@@ -5,6 +5,10 @@ import PopupMenu from './PopupMenu';
 import Target from './Target';
 import waldoImage from '../assets/waldo.png';
 import Scoreboard from './Scoreboard';
+import Hud from './Hud';
+import { createContext } from 'react';
+
+export const CharactersContext = createContext([]);
 
 let count = 0;
 
@@ -95,8 +99,8 @@ const SearchImage = ({ className }) => {
   }, [initializeGame]);
 
   return (
-    <>
-      {/* <Scoreboard characters={characters} /> */}
+    <CharactersContext.Provider value={characters}>
+      <Hud />
       <div className={className} onClick={togglePopupMenu}>
         <StyledImg src={waldoImage} alt="where's waldo beach image" />
         {showPopup && (
@@ -123,7 +127,7 @@ const SearchImage = ({ className }) => {
           }
         })}
       </div>
-    </>
+    </CharactersContext.Provider>
   );
 };
 
