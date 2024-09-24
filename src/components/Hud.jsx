@@ -5,6 +5,7 @@ import Scoreboard from './Scoreboard';
 import Waldo from './Waldo';
 import Wenda from './Wenda';
 import Woof from './Woof';
+
 const Hud = ({ className }) => {
   return (
     <div className={className}>
