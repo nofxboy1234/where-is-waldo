@@ -74,7 +74,8 @@ const StyledScoreboard = styled(Scoreboard)`
   position: fixed;
   z-index: 1;
   color: black;
-  background-color: rgb(255 255 255 / 70%);
+  background-color: rgb(255 255 255 / 80%);
+  top: 100px;
 `;
 
 Scoreboard.propTypes = {

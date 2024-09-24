@@ -1,9 +1,10 @@
 import './App.css';
 import SearchImage from './components/SearchImage';
-import Scoreboard from './components/Scoreboard';
+import Instructions from './components/Instructions';
 function App() {
   return (
     <>
+      <Instructions />
       <SearchImage />
     </>
   );
