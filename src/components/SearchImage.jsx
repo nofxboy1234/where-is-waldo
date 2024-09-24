@@ -87,7 +87,6 @@ const SearchImage = ({ className }) => {
       if (ignore) {
         return;
       }
-      console.log(`Running SearchImage effect with id: ${id}`);
       initializeGame();
     });
     return () => {

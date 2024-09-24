@@ -18,7 +18,6 @@ const Scoreboard = ({ className, characters }) => {
       if (ignore) {
         return;
       }
-      console.log(`Running Scoreboard effect with id: ${id}`);
       initializeScores();
     });
     return () => {
@@ -50,11 +49,9 @@ const Scoreboard = ({ className, characters }) => {
       .catch((error) => console.error(error));
   }
 
-  console.log('Rendering Scoreboard');
-
   return (
     <div className={className}>
-      <div>Scoreboard:</div>
+      <div>Top 3 Scoreboard:</div>
       <div>
         {scores.map((score) => (
           <div key={score.id} id={`score-${score.id}`} data-id={score.id}>
