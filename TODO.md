@@ -102,3 +102,8 @@ patterns.dev
 refactoring.guru
 deno
 more testing: rspec, minitest, vitest
+
+apply to rails/node/?:
+discord
+evil martians
+naked
