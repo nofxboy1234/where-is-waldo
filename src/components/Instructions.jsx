@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Waldo from './Waldo';
 
 const Instructions = ({ className }) => {
   return (
-    <div className={className}>
-      <div>
-        Find all 3 characters by clicking their position in the image and
-        choosing their name.
+    <>
+      <div className={className}>
+        <div>
+          Find all 3 characters by clicking their position in the image and
+          choosing their name.
+        </div>
+        <div>
+          A target icon will be placed when the correct character is identified.
+        </div>
       </div>
-      <div>
-        A target icon will be placed when the correct character is identified.
-      </div>
-    </div>
+      <Waldo />
+    </>
   );
 };
 
