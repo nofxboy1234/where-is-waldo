@@ -68,9 +68,13 @@ const Scoreboard = ({ className, characters }) => {
 
 const StyledScoreboard = styled(Scoreboard)`
   padding: 1rem;
-  border: 1px solid white;
+  border: 2px solid black;
   width: fit-content;
   margin: 1rem;
+  position: fixed;
+  z-index: 1;
+  color: black;
+  background-color: rgb(255 255 255 / 70%);
 `;
 
 Scoreboard.propTypes = {
