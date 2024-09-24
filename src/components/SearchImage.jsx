@@ -101,7 +101,7 @@ const SearchImage = ({ className }) => {
       <div>
         A target icon will be placed when the correct character is identified.
       </div>
-      <Scoreboard />
+      <Scoreboard characters={characters} />
       <div className={className} onClick={togglePopupMenu}>
         <StyledImg src={waldoImage} alt="where's waldo beach image" />
         {showPopup && (

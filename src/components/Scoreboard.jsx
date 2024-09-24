@@ -4,10 +4,14 @@ import { useEffect, useState } from 'react';
 
 let count = 0;
 
-const Scoreboard = () => {
+const Scoreboard = ({ characters }) => {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
+    if (!characters.every((character) => character.position === null)) {
+      return;
+    }
+
     const id = ++count;
     let ignore = false;
     Promise.resolve().then(() => {
@@ -20,7 +24,7 @@ const Scoreboard = () => {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [characters]);
 
   function initializeScores() {
     fetch(`http://localhost:3000/scores`, {
@@ -66,6 +70,8 @@ const StyledScoreboard = styled(Scoreboard)`
   left: ${(props) => props.clickedPosition.x + 'px'}; */
 `;
 
-Scoreboard.propTypes = {};
+Scoreboard.propTypes = {
+  characters: PropTypes.array,
+};
 
 export default StyledScoreboard;
