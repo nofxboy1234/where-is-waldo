@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 let count = 0;
 
-const Scoreboard = ({ characters }) => {
+const Scoreboard = ({ className, characters }) => {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
@@ -53,21 +53,24 @@ const Scoreboard = ({ characters }) => {
   console.log('Rendering Scoreboard');
 
   return (
-    <>
-      <div>scoreboard</div>
-      {scores.map((score) => (
-        <div key={score.id} id={`score-${score.id}`} data-id={score.id}>
-          {score.name} - {score.time}s
-        </div>
-      ))}
-    </>
+    <div className={className}>
+      <div>Scoreboard:</div>
+      <div>
+        {scores.map((score) => (
+          <div key={score.id} id={`score-${score.id}`} data-id={score.id}>
+            {score.name} - {score.time}s
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
 const StyledScoreboard = styled(Scoreboard)`
-  /* position: absolute;
-  top: ${(props) => props.clickedPosition.y + 'px'};
-  left: ${(props) => props.clickedPosition.x + 'px'}; */
+  padding: 1rem;
+  border: 1px solid white;
+  width: fit-content;
+  margin: 1rem;
 `;
 
 Scoreboard.propTypes = {
