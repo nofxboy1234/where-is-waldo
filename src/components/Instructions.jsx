@@ -1,33 +1,41 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Waldo from './Waldo';
 
 const Instructions = ({ className }) => {
   return (
     <>
       <div className={className}>
         <div>
-          Find all 3 characters by clicking their position in the image and
-          choosing their name.
-        </div>
-        <div>
-          A target icon will be placed when the correct character is identified.
+          <div>
+            Find all 3 characters by clicking their position in the image and
+            choosing their name.
+          </div>
+          <div>
+            A target icon will be placed when the correct character is
+            identified.
+          </div>
         </div>
       </div>
-      <Waldo />
     </>
   );
 };
 
 const StyledInstructions = styled(Instructions)`
-  padding: 1rem;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 1rem; */
   border: 2px solid black;
-  width: fit-content;
-  margin: 1rem;
-  position: fixed;
-  z-index: 1;
+  /* width: fit-content; */
+  /* margin: 1rem; */
+  /* position: fixed; */
+  /* z-index: 1; */
   color: black;
-  background-color: rgb(255 255 255 / 80%);
+  background-color: white;
+  border: 2px solid black;
 `;
 
 Instructions.propTypes = {

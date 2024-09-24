@@ -4,26 +4,26 @@ import { useEffect, useState } from 'react';
 
 let count = 0;
 
-const Scoreboard = ({ className, characters }) => {
+const Scoreboard = ({ className, characters = [] }) => {
   const [scores, setScores] = useState([]);
 
-  useEffect(() => {
-    if (!characters.every((character) => character.position === null)) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!characters.every((character) => character.position === null)) {
+  //     return;
+  //   }
 
-    const id = ++count;
-    let ignore = false;
-    Promise.resolve().then(() => {
-      if (ignore) {
-        return;
-      }
-      initializeScores();
-    });
-    return () => {
-      ignore = true;
-    };
-  }, [characters]);
+  //   const id = ++count;
+  //   let ignore = false;
+  //   Promise.resolve().then(() => {
+  //     if (ignore) {
+  //       return;
+  //     }
+  //     initializeScores();
+  //   });
+  //   return () => {
+  //     ignore = true;
+  //   };
+  // }, [characters]);
 
   function initializeScores() {
     fetch(`http://localhost:3000/scores`, {
@@ -51,28 +51,27 @@ const Scoreboard = ({ className, characters }) => {
 
   return (
     <div className={className}>
-      <div>Top 3 Scoreboard:</div>
       <div>
-        {scores.map((score) => (
-          <div key={score.id} id={`score-${score.id}`} data-id={score.id}>
-            {score.name} - {score.time}s
-          </div>
-        ))}
+        <div>Top 3 Scoreboard:</div>
+        <div>
+          {scores.map((score) => (
+            <div key={score.id} id={`score-${score.id}`} data-id={score.id}>
+              {score.name} - {score.time}s
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 const StyledScoreboard = styled(Scoreboard)`
+  display: flex;
+  justify-content: center;
   padding: 1rem;
-  border: 2px solid black;
-  width: fit-content;
-  margin: 1rem;
-  position: fixed;
-  z-index: 1;
   color: black;
-  background-color: rgb(255 255 255 / 80%);
-  top: 100px;
+  background-color: white;
+  border: 2px solid black;
 `;
 
 Scoreboard.propTypes = {

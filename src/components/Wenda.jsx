@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import waldoCharacter from '../assets/character_waldo.png';
+import wendaCharacter from '../assets/character_wenda.png';
 
-const Waldo = ({ className }) => {
+const Wenda = ({ className }) => {
   return (
     <div className={className}>
-      <img src={waldoCharacter} alt="Waldo Character" />
-      <CharacterName>Waldo</CharacterName>
+      <img src={wendaCharacter} alt="Waldo Character" />
+      <CharacterName>Wenda</CharacterName>
     </div>
   );
 };
 
-const StyledWaldo = styled(Waldo)`
+const StyledWenda = styled(Wenda)`
   display: flex;
   justify-content: end;
   flex-direction: column;
@@ -25,8 +25,8 @@ const CharacterName = styled.div`
   background-color: white;
 `;
 
-Waldo.propTypes = {
+Wenda.propTypes = {
   className: PropTypes.string,
 };
 
-export default StyledWaldo;
+export default StyledWenda;

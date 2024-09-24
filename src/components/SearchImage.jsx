@@ -96,7 +96,7 @@ const SearchImage = ({ className }) => {
 
   return (
     <>
-      <Scoreboard characters={characters} />
+      {/* <Scoreboard characters={characters} /> */}
       <div className={className} onClick={togglePopupMenu}>
         <StyledImg src={waldoImage} alt="where's waldo beach image" />
         {showPopup && (
