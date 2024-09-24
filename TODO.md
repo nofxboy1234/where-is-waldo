@@ -89,3 +89,16 @@
 
 - Debugging
   - [x] Add launch.json config for http://localhost:5173
+
+inertia.js
+typescript
+node
+
+next.js
+graphql
+poodr+99 bottles
+leetcode
+patterns.dev
+refactoring.guru
+deno
+more testing: rspec, minitest, vitest
