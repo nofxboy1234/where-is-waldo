@@ -95,8 +95,8 @@ typescript
 node, express
 next.js
 
-graphql
 leetcode
+graphql
 patterns.dev
 deno
 poodr+99 bottles
@@ -104,6 +104,7 @@ refactoring.guru
 more testing: rspec, minitest, vitest
 
 apply to rails/node/?:
+vercel
 discord
 evil martians
 naked
