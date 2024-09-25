@@ -97,6 +97,7 @@ next.js
 
 leetcode
 graphql
+redux
 patterns.dev
 deno
 poodr+99 bottles
