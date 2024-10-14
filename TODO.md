@@ -88,19 +88,23 @@
         - [x] add config to vite.config.js
 
 - Debugging
+
   - [x] Add launch.json config for http://localhost:5173
 
-inertia.js
-typescript
-leetcode
+- [x] inertia.js
+- [ ] typescript
+- [ ] leetcode
+- [ ] Linkedin + apply to jobs
 
 node, express
-next.js
-
 graphql
+deno, fresh
+
+next.js
 redux
 patterns.dev
-deno
 poodr+99 bottles
-refactoring.guru
+Layered Design for Ruby on Rails Applications
+Professional Rails Testing
 more testing: rspec, minitest, vitest
+refactoring.guru
