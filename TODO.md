@@ -92,19 +92,76 @@
   - [x] Add launch.json config for http://localhost:5173
 
 - [x] inertia.js
-- [ ] typescript
-- [ ] leetcode
-- [ ] Linkedin + apply to jobs
 
-node, express
-graphql
-deno, fresh
+---
 
-next.js
-redux
-patterns.dev
-poodr+99 bottles
-Layered Design for Ruby on Rails Applications
-Professional Rails Testing
-more testing: rspec, minitest, vitest
-refactoring.guru
+- linkedin?
+
+- [x] typescript
+- [x] node, express, bun
+- [x] frontend masters - algorithms course
+
+- [.] jobs: remoteok.com
+- [.] neetcode -> leetcode
+- [.] elixir+phoenix liveview,
+- [.] build:
+  -- [ ] node
+  -- [ ] bun
+  -- [ ] vue
+  -- [ ] nativescript-vue
+  -- [ ] Oxc - oxlint,...
+  -- [ ] react, react-native
+  -- [ ] react router
+  -- [ ] vite
+  -- [ ] vitest - unit, component
+  -- [ ] cypress, playwright - E2E
+  -- [ ] vue test utils (VTU) - https://test-utils.vuejs.org/guide/essentials/easy-to-test.html
+  -- [ ] eslint-plugin-vue - https://vuejs.org/guide/scaling-up/tooling#linting
+  -- [ ] eslint
+  -- [ ] prettier
+  -- [ ] chrome dev tools
+  -- [ ] supabase
+  -- [ ] better-auth
+  -- [ ] moondream.ai
+  -- [ ] cursor ai
+  -- [ ] gemini ai
+  -- [ ] payfast (alt to stripe)
+
+- [.] ai/ml:
+  -- [ ] https://www.kaggle.com/learn
+  -- [ ] https://course.fast.ai/
+
+- [ ] offerzen
+
+---
+
+- [ ] graphql, relay
+- [ ] redux
+
+- [ ] yacine sub
+
+- [ ] React Native for iOs and Android apps
+- [ ] Electron js for desktop apps
+
+- [ ] cloudflare tunnel
+- [ ] supabase
+- [x] curl
+- [ ] flow
+- [ ] vscode extension: pretty-ts-errors
+
+      ~drizzle orm
+      ~deno, fresh
+      ~next.js
+      ~patterns.dev
+      ~poodr+99 bottles
+      ~Layered Design for Ruby on Rails Applications
+      ~Professional Rails Testing
+      ~more testing: rspec, minitest, vitest
+      ~refactoring.guru
+
+~arch linux / nixOs
+~hyperland
+~neovim - compare with kickstart config
+
+zig, go, elixir, clojure
+functional programming
